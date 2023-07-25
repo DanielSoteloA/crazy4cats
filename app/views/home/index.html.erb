@@ -1,0 +1,39 @@
+<h1>Publicaciones</h1>
+<hr>
+<% if user_signed_in?%>
+    <%= render "publications/form", publication: @publication %>
+<% else %>
+    <p class="text-success">Inscribete Para Publicar</p>
+<% end %>
+<hr>
+
+<div class="row">
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id Publicación</th>
+      <th scope="col">Publicación</th>
+      <th scope="col">Likes</th>
+      <th scope="col">Ver</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @publications.each do |publication| %>
+    <tr>
+      <th scope="row"><%= publication.id %></th>
+      <td><%= publication.content %></td>
+      <td>
+        <!--<%= publication.likes.count %>-->
+        <% if publication.is_liked?(current_user) %>
+            <%= link_to '<i class="fa-solid fa-heart"></i>'.html_safe, publication_likes_path(publication), data: { "turbo-method": :post } %> 
+        <% else %>
+            <%= link_to '<i class="fa-regular fa-heart"></i>'.html_safe, publication_likes_path(publication), data: { "turbo-method": :post } %> 
+        <% end %>
+      </td>
+      <td><%= link_to "Mostrar Publicación", publication %></td>
+    </tr>
+    <%end %>
+  </tbody>
+</table>
+
+</div>
