@@ -1,9 +1,9 @@
 # README
 
-* Crazy4Cats
+# Crazy4Cats
 
 * Ruby version
- - Rails 7.0.6
+    - Rails 7.0.6
 
 * Gemas instaladas
     - gem "bootstrap", "~> 5.2"
